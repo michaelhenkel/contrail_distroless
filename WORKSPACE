@@ -81,6 +81,51 @@ load(
     if "backports" in SHA256s[arch][name]
 ]
 
+#[
+#    dpkg_src(
+#        name = arch + "_" + name + "_oldoldstable",
+#        arch = arch,
+#        distro = distro + "-oldoldstable",
+#        sha256 = SHA256s[arch][name]["oldoldstable"],
+#        snapshot = DEBIAN_SNAPSHOT,
+#        url = "https://snapshot.debian.org/archive",
+#    )
+#    for arch in ARCHITECTURES
+#    for (name, distro) in VERSIONS
+#    if "oldoldstable" in SHA256s[arch][name]
+#]
+
+
+
+[
+    dpkg_src(
+        name = arch + "_" + name + "_oldoldstable",
+        arch = arch,
+        distro = distro + "-oldoldstable",
+        package_prefix = "https://snapshot.debian.org/archive/debian/{}/".format(DEBIAN_SNAPSHOT),
+        packages_gz_url = "https://snapshot.debian.org/archive/debian/{}/dists/jessie/main/binary-{}/Packages.gz".format(DEBIAN_SNAPSHOT, arch),
+        sha256 = SHA256s[arch][name]["oldoldstable"],
+    )
+    for arch in ["amd64"]
+    for (name, distro) in VERSIONS
+    if "oldoldstable" in SHA256s[arch][name]
+]
+
+[
+    dpkg_src(
+        name = arch + "_" + name + "_oldstable",
+        arch = arch,
+        distro = distro + "-oldstable",
+        package_prefix = "https://snapshot.debian.org/archive/debian/{}/".format(DEBIAN_SNAPSHOT),
+        packages_gz_url = "https://snapshot.debian.org/archive/debian/{}/dists/stretch/main/binary-{}/Packages.gz".format(DEBIAN_SNAPSHOT, arch),
+        sha256 = SHA256s[arch][name]["oldstable"],
+    )
+    for arch in ["amd64"]
+    for (name, distro) in VERSIONS
+    if "oldstable" in SHA256s[arch][name]
+]
+
+
 [
     dpkg_list(
         name = "package_bundle_" + arch + "_debian9",
@@ -180,6 +225,7 @@ load(
             "libpcre3",
             "libbz2-1.0",
             "liblzma5",
+	    "libcurl3-gnutls",
         ] + (["libunwind8"] if arch in BASE_ARCHITECTURES else []),
         sources = [
             "@" + arch + "_debian9_updates//file:Packages.json",
@@ -257,6 +303,14 @@ load(
 	    "zlib1g",
 	    "libpsl5",
 	    "libicu63",
+	    "libcom-err2",
+	    "libcurl3-gnutls",
+	    "lib32z1",
+	    "libicu57",
+	    "libxml2",
+	    "libunistring0",
+	    "libssl1.0.2",
+	    "libidn11",
 
             #c++
             "libgcc1",
@@ -334,12 +388,14 @@ load(
             "libpcre3",
             "libbz2-1.0",
             "liblzma5",
-        ] + (["libunwind8"] if arch in BASE_ARCHITECTURES else []),
+        ] + (["libunwind8"] if arch in BASE_ARCHITECTURES else []) + (["libssl1.0.0"] if arch in ["amd64"] else []),
         sources = [
             "@" + arch + "_debian10_security//file:Packages.json",
             "@" + arch + "_debian10_updates//file:Packages.json",
             "@" + arch + "_debian10//file:Packages.json",
-        ],
+            #"@" + arch + "_debian10_oldoldstable//file:Packages.json",
+	    #],
+	    ] + (["@" + arch + "_debian10_oldoldstable//file:Packages.json"] if arch in ["amd64"] else []) + (["@" + arch + "_debian10_oldstable//file:Packages.json"] if arch in ["amd64"] else []),
     )
     for arch in ARCHITECTURES
 ]
