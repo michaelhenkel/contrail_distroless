@@ -26,7 +26,10 @@ RUN apt update -y && \
     libtcmalloc-minimal4 \
     xxd \
     libbz2-dev \
-    libvirt-dev
+    libvirt-dev \
+    libnuma-dev \
+    rpm2cpio \
+    cpio
 RUN rm //usr/bin/g++ /usr/bin/cpp /usr/bin/gcc && \
     update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.9 10 && \
     update-alternatives --install /usr/bin/cpp cpp /usr/bin/cpp-4.9 10 && \

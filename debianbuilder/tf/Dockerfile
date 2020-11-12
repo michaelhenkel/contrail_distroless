@@ -22,6 +22,8 @@ COPY control.patch /
 RUN cat control.patch |patch -p0
 COPY agent.patch /
 RUN cat agent.patch |patch -p0
+COPY vrouter.patch /
+RUN cat vrouter.patch |patch -p0
 RUN cd /libs && \
     tar czvf third_party_libs.tgz usr && \
     cp third_party_libs.tgz /
