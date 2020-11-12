@@ -1,0 +1,18 @@
+--- /usr/include/boost/asio/ssl/impl/context.ipp.orig   2020-11-11 00:15:58.773074500 +0000
++++ /usr/include/boost/asio/ssl/impl/context.ipp        2020-11-11 00:17:19.813074500 +0000
+@@ -87,6 +87,7 @@
+     handle_ = ::SSL_CTX_new(::SSLv2_server_method());
+     break;
+ #endif // defined(OPENSSL_NO_SSL2)
++/*
+   case context::sslv3:
+     handle_ = ::SSL_CTX_new(::SSLv3_method());
+     break;
+@@ -96,6 +97,7 @@
+   case context::sslv3_server:
+     handle_ = ::SSL_CTX_new(::SSLv3_server_method());
+     break;
++ */
+   case context::tlsv1:
+     handle_ = ::SSL_CTX_new(::TLSv1_method());
+     break;

@@ -1,0 +1,11 @@
+--- tf-dev-env/controller/src/vnsw/agent/services/ndp_entry.cc.orig     2020-11-11 22:40:56.158686300 +0000
++++ tf-dev-env/controller/src/vnsw/agent/services/ndp_entry.cc  2020-11-11 23:02:48.808686300 +0000
+@@ -619,7 +619,7 @@
+ NdpEntry::NdpEntry(boost::asio::io_service &io, Icmpv6Handler *handler,
+                    NdpKey &key, const VrfEntry *vrf, const Interface *itf)
+     : work_queue_(TaskScheduler::GetInstance()->GetTaskId("Agent::Services"),
+-      NULL,
++      0,
+       boost::bind(&NdpEntry::DequeueEvent, this, _1)),
+       delay_timer_(TimerManager::CreateTimer(
+                   io, "Delay timer",

@@ -1,0 +1,11 @@
+--- tf-dev-env/src/contrail-common/io/ssl_server.cc.orig        2020-11-11 16:38:36.258686300 +0000
++++ tf-dev-env/src/contrail-common/io/ssl_server.cc     2020-11-11 00:43:51.423074500 +0000        
+@@ -27,7 +27,7 @@
+             boost::asio::ssl::context::no_tlsv1_1, ec);
+     assert(ec.value() == 0);
+
+-#if BOOST_VERSION >= 105400
++#if BOOST_VERSION >= 105600
+     if (getenv("CONTRAIL_SSL_SOCKET_COMPRESSION_ENABLE")) {
+         context_.clear_options(boost::asio::ssl::context::no_compression, ec);
+         assert(ec.value() == 0);

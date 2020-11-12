@@ -311,6 +311,7 @@ load(
 	    "libunistring0",
 	    "libssl1.0.2",
 	    "libidn11",
+	    "libuv1",
 
             #c++
             "libgcc1",
