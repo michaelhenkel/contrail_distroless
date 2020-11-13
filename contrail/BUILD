@@ -56,6 +56,7 @@ container_image(
 	DISTRO_PACKAGES["amd64"]["_debian10"]["libgcc1"],
 	DISTRO_PACKAGES["amd64"]["_debian10"]["libuv1"],
 	DISTRO_PACKAGES["amd64"]["_debian10"]["libicu63"],
+	DISTRO_PACKAGES["amd64"]["_debian10"]["libtcmalloc-minimal4"],
     ],
 )
 

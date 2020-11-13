@@ -29,13 +29,18 @@ RUN apt update -y && \
     libvirt-dev \
     libnuma-dev \
     rpm2cpio \
+    jq \
+    libpcap-dev \
+    libxml2-dev \
+    libnl-3-dev \
+    libnl-genl-3-dev \
     cpio
 RUN rm //usr/bin/g++ /usr/bin/cpp /usr/bin/gcc && \
     update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.9 10 && \
     update-alternatives --install /usr/bin/cpp cpp /usr/bin/cpp-4.9 10 && \
     update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.9 10
-RUN ln -s /usr/lib/x86_64-linux-gnu/libxml2.so.2 /usr/lib/x86_64-linux-gnu/libxml2.so && \
-    ln -s /usr/lib/libtcmalloc_minimal.so.4.3.0 /usr/lib/libtcmalloc.so
+#RUN ln -s /usr/lib/x86_64-linux-gnu/libxml2.so.2 /usr/lib/x86_64-linux-gnu/libxml2.so && \
+RUN ln -s /usr/lib/libtcmalloc_minimal.so.4.3.0 /usr/lib/libtcmalloc.so
 RUN pip install future
 RUN mkdir -p /libs/usr/lib/x86_64-linux-gnu
 RUN git clone https://github.com/datastax/cpp-driver && \

@@ -1,0 +1,17 @@
+[
+	{
+		"package": "http://mirror.centos.org/centos/7/os/x86_64/Packages/kernel-devel-3.10.0-1160.el7.x86_64.rpm",
+		"filetype": "RPM",
+		"kernelpath": "/usr/src/kernels/3.10.0-1160.el7.x86_64"
+	},
+	{
+		"package": "https://rpmfind.net/linux/centos/7.8.2003/updates/x86_64/Packages/kernel-devel-3.10.0-1127.19.1.el7.x86_64.rpm",
+		"filetype": "RPM",
+		"kernelpath": "/usr/src/kernels/3.10.0-1127.19.1.el7.x86_64"
+	},
+	{
+		"package": "linux-headers-4.19-amd64",
+		"filetype": "DEB",
+		"kernelpath": "/usr/src/linux-headers-4.19.0-0.bpo.12-amd64"
+	}
+]
