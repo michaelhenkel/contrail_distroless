@@ -39,7 +39,7 @@ vrouter_push: vrouter_build
 	docker push michaelhenkel/contrail-vrouter:distroless
 init_build:
 	@echo "Building init..."
-	cd contrail-init; docker build -t michaelhenkel/contrail-init:distroless .
+	cd contrail-init; docker build --no-cache -t michaelhenkel/contrail-init:distroless .
 init_push: init_build
 	@echo "Pushing init..."
 	docker push michaelhenkel/contrail-init:distroless
