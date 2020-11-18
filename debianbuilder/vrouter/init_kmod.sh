@@ -38,7 +38,7 @@ function getInterfaceFromVhost {
 
 function getInterfaceFromIP {
   echo "getting interface from ip"
-  INTERFACE=$(ip route sh |grep ${PODIP} |awk '{print $3}')
+  INTERFACE=$(ip route sh |grep ${PODIP} |awk '{print $3}' |head -1)
 }
 
 function getInterfaceFromDefaultRoute {

@@ -43,4 +43,22 @@ init_build:
 init_push: init_build
 	@echo "Pushing init..."
 	docker push michaelhenkel/contrail-init:distroless
-push_all: control_push agent_push vrouter_push init_push
+cni_server_build:
+	@echo "Building cni server..."
+	cd cni_server; docker build --no-cache -t michaelhenkel/contrail-cni-server:distroless .
+cni_server_push: cni_server_build
+	@echo "Pushing cni_server..."
+	docker push michaelhenkel/contrail-cni-server:distroless
+cni_client_build:
+	@echo "Building cni client..."
+	cd cni_client; docker build --no-cache -t michaelhenkel/contrail-cni-client:distroless .
+cni_client_push: cni_client_build
+	@echo "Pushing cni_client..."
+	docker push michaelhenkel/contrail-cni-client:distroless
+kubemanager_build:
+	@echo "Building kubemanager..."
+	cd kubemanager; docker build --no-cache -t michaelhenkel/contrail-kubemanager:distroless .
+kubemanager_push: kubemanager_build
+	@echo "Pushing kubemanager..."
+	docker push michaelhenkel/contrail-kubemanager:distroless
+push_all: control_push agent_push vrouter_push init_push cni_server_push cni_client_push
